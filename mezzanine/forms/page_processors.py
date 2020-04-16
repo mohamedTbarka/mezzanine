@@ -10,6 +10,7 @@ from mezzanine.forms.signals import form_invalid, form_valid
 from mezzanine.pages.page_processors import processor_for
 from mezzanine.utils.email import split_addresses, send_mail_template
 from mezzanine.utils.views import is_spam
+from containerapp.forms import FormForForm1
 
 
 def format_value(value):
@@ -27,7 +28,7 @@ def form_processor(request, page):
     """
     Display a built form and handle submission.
     """
-    form = FormForForm(page.form, RequestContext(request),
+    form = FormForForm1(page.form, RequestContext(request),
                        request.POST or None, request.FILES or None)
     if form.is_valid():
         url = page.get_absolute_url() + "?sent=1"
